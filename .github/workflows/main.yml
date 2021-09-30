@@ -1,0 +1,16 @@
+name: Build & Publish Base Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Build_Base_Image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to Ali-ACR
+        uses: aliyun/acr-login@v1
+        with:
+          region-id: cn-shenzhen
+          access-key-id: "${{ secrets.ACR_ACCESSKEYID }}"
+          access-key-secret: "${{ secrets.ACR_ACCESSKEYSECRET }}"
