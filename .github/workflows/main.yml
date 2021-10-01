@@ -11,6 +11,12 @@ jobs:
       - name: Login to Ali-ACR
         uses: aliyun/acr-login@v1
         with:
-          region-id: cn-shenzhen
+          region-id: cn-hangzhou
           access-key-id: "${{ secrets.ACR_ACCESSKEYID }}"
           access-key-secret: "${{ secrets.ACR_ACCESSKEYSECRET }}"
+          
+      - name: Test Ali-ACR
+        run: |
+          docker pull ubuntu:20.04
+          docker tag ubuntu:20.04 "registry.cn-hangzhou.aliyuncs.com/byrio/overleaf:test"
+          docker push registry.cn-hangzhou.aliyuncs.com/byrio/overleaf:test
